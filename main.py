@@ -24,7 +24,9 @@ bot = commands.Bot(command_prefix=None, intents=intents)
 # Sync bot commands
 @bot.event
 async def setup_hook():
-    await bot.load_extension("cogs.general")
+    # await bot.load_extension("cogs.general")
+    # await bot.load_extension("cogs.welcome")
+    # await bot.load_extension("cogs.menu")
     await bot.tree.sync(guild=GUILD)
     print(f"Synced commands to server {GUILD.id}")
 
