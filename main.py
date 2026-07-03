@@ -2,6 +2,7 @@ import asyncio
 
 import discord
 import os
+from cogs.twitch import TwitchNotifier
 from discord.ext import commands
 from discord import app_commands
 from dotenv import load_dotenv
@@ -22,19 +23,25 @@ intents.members = True
 bot = commands.Bot(command_prefix=None, intents=intents)
 
 # Sync bot commands
-@bot.event
 async def setup_hook():
     # await bot.load_extension("cogs.general")
     # await bot.load_extension("cogs.welcome")
     # await bot.load_extension("cogs.menu")
+    bot.twitch = TwitchNotifier(bot)
+
     await bot.tree.sync(guild=GUILD)
     print(f"Synced commands to server {GUILD.id}")
 
 async def main():
     async with bot:
-        # Load cogs
         bot.setup_hook = setup_hook
-        await bot.start(BOT_TOKEN)    
+
+        try:
+            await bot.start(BOT_TOKEN)
+
+        finally:
+            if hasattr(bot, "twitch"):
+                await bot.twitch.close()   
 
 #Run the bot
 asyncio.run(main())
