@@ -16,6 +16,12 @@ class General(commands.Cog):
     @app_commands.describe(member="Who to tell to touch grass")
     async def grass(self, interaction: discord.Interaction, member: discord.Member):
         await interaction.response.send_message(f"{member.mention}, {interaction.user} wants you to go touch some grass!")
+
+    # /snow
+    @app_commands.command(name="snow", description="Tell someone to touch snow")
+    @app_commands.describe(member="Who to tell to touch snow")
+    async def snow(self, interaction: discord.Interaction, member: discord.Member):
+        await interaction.response.send_message(f"{member.mention}, {interaction.user} wants you to go touch some snow!")
         
 # Setup function to add the cog to the bot
 async def setup(bot):

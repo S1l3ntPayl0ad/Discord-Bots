@@ -11,7 +11,7 @@ load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 WELCOME_CHANNEL_ID = os.getenv("WELCOME_CHANNEL_ID")
-GUILD = discord.Object(id=int(os.getenv("SERVER_ID")))
+GUILD = discord.Object(id=int(os.getenv("SERVER_ID_TEST_SERVER")))
 
 # Initizialize intents
 intents = discord.Intents.default()
